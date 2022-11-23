@@ -13,7 +13,8 @@ For Arch Linux, `ucf` is available in the [aur](https://aur.archlinux.org)
 ```
 yay -S ucf --noconfirm
 ```
-###
+### Dependencies
+Since `ucf` doesn't format code on its own, it expects the respective code formatters to be present in the system's path. The dependencies are `black`, `clang-format`, `prettier` and `rustfmt`.
 
 ## Usage
 
@@ -27,21 +28,23 @@ ucf --help
 ```
 prints help.
 
-## Inner working
-`ucf` is a very simple program. It determines the language used (using the file extension) and calls a predetermined code formatter on the file, eg. if the file ends with .py, it calls `black` on the file. 
-
 ## Why does this program exist?
-Basically, I wanted to format my code when using `neovim`.
-I know solutions exists, but I needed a simpler solution.
-I press <F5> and the file saves and calls a code formatter.
-But the problem is that each programming language has its own formatter and each of them work differently. Some output to stdout and some change the file in place, some need additional arguements to modify the file in place and etc. 
-And finding the proper code formatter for each language takes time. 
-So, I decided to write a program that will take care of all those for us and when we call the code formatter, it just formats the code. 
+
+Basically, I wanted a single program to format any code I throw at it. 
+I did not want to hunt for a formatter for each language I write. 
+I did not want to read the man page for each code formatter I found. 
+But at the end of the day, I went through all the above and wasted so much time. I don't want any others to feel the same frustation again. 
+So, I decided to write a program that will take care of all those. 
 
 ## Why not use a generic code formatter?
-I understand generic code formatters exist (check [this repo](https://github.com/rishirdua/awesome-code-formatters) for a list), but theyt don't support all languages (supporting all languages perfectly is an impossible task) and the native code formatter specific for each language is much superior in terms of correctness and functionality. 
+I understand generic code formatters exist (check [this repo](https://github.com/rishirdua/awesome-code-formatters) for a list), but 
+* They don't support all languages (supporting all languages perfectly is an impossible task)
+* In most cases, the native code formatter or a language specific one is much superior in terms of correctness and functionality (for eg. `black` checks the [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) for each python file. I am not sure if prettier does that). So, I want to use `black` for python and `prettier` for javascript. 
 
-This approach of just calling other code formatters is very extensible, easy, simple and practical. 
+## Inner working
+`ucf` is a very simple program. It determines the language used (using the file extension) and calls a predetermined code formatter on the file, eg. if the file ends with .py, it calls `black` on the file, if the file ends with .cpp or .c or cc, it calls `clang-format` on the file. 
+
+I think this approach is more extensible, practical and simple. 
 
 ## Why use rust for such a simple task?
 1. Why not?
