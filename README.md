@@ -21,7 +21,7 @@ Since `ucf` doesn't format code on its own, it expects the respective code forma
 ```
 ucf <file_name>
 ```
-It modifies the file in place.
+Remember that `ucf` modifies the file in place.
 
 ```
 ucf --help
@@ -33,7 +33,7 @@ prints help.
 Basically, I wanted a single program to format any code I throw at it. 
 I did not want to hunt for a formatter for each language I write. 
 I did not want to read the man page for each code formatter I found. 
-But at the end of the day, I went through all the above and wasted so much time. I don't want any others to feel the same frustation again. 
+But at the end of the day, I went through all the above and wasted so much time. I don't want any others to go through the same process again. 
 So, I decided to write a program that will take care of all those. 
 
 ## Why not use a generic code formatter?
@@ -50,6 +50,9 @@ I think this approach is more extensible, practical and simple.
 1. Why not?
 2. I really like rust's project management (dependency handling, versioning and the whole ecosystem)
 3. I wanted to get more comfortable with the language.
+
+## Planned features
+* Read from stdin and output to stdout (so that this program can be used in IDEs seamlessly). 
 
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 
