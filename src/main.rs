@@ -1,45 +1,56 @@
-use std::env;
-use args::{Args, ArgsError};
+mod args;
 
-const PROGRAM_NAME: &'static str = "ucf";
-const PROGRAM_DESC: &'static str = "Universal Code Formatter";
-
-fn print_help() {
-    let help_string: String = String::from("Help");
-    println!("{}", help_string);
-}
-
-fn parse(input: &Vec<String>) -> Result<(String), ArgsError> {
-   let mut args = Args::new(PROGRAM_NAME, PROGRAM_DESC);
-   args.flag("h", "help", "Print the usage menu");
-
-   args.parse(input)?;
-
-   let is_help = args.value_of("help")?;
-   if is_help {
-       args.full_usage();
-   }
-
-}
+use args::UCF_Args;
+use clap::Parser;
+use std::process::{exit, Command};
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    dbg!(&args);
-
-    let (file_name) = parse(&args).unwrap();
-
-    let _languages = [
-        ("C", ".c", "clang-format"),
-        ("C++", ".cpp", "clang-format"),
-        ("C++", ".cc", "clang-format"),
-        ("Java", ".java", "google-java-format"),
-        ("Python", ".py", "black"),
-        ("Javascript", ".js", "prettier"),
-        ("Typescript", "ts", "prettier"),
-    ];
-
-    match args[1].as_str() {
-        "--help" => print_help(),
-        _ => {}
+    let args: UCF_Args = UCF_Args::parse();
+    let file_name: String = args.file_name.clone();
+    let file_extension: String = find_extension(&file_name);
+    let formatter: String;
+    let mut formatter_args: Vec<&str> = Vec::new();
+    match file_extension.as_str() {
+        "c" | "cpp" | "cc" => {
+            formatter = String::from("clang-format");
+            formatter_args.push("-i");
+        }
+        "go" => {
+            formatter = String::from("gofmt");
+            formatter_args.push("-w");
+        }
+        "java" => {
+            formatter = String::from("google-java-format");
+            formatter_args.push("-i");
+        }
+        "css"|"gfm"|"html"|"js"|"json"|"jsx"|"less"|"md"|"mdx"|"sass"|"scss"|"ts"|"vue"|"yaml" => {
+            formatter = String::from("prettier");
+            formatter_args.push("-w");
+        }
+        "py" => {
+            formatter = String::from("black");
+        }
+        "rs" => {
+            formatter = String::from("rustfmt");
+        }
+        _ => {
+            exit(0);
+        }
     }
+    format_code(&file_name, &formatter, &formatter_args);
+}
+
+fn find_extension(file_name: &String) -> String {
+    let split = file_name.split(".");
+    let mut split_vec: Vec<&str> = split.collect();
+    return String::from(split_vec.pop().unwrap());
+}
+
+fn format_code(file_name: &String, formatter: &String, args: &Vec<&str>) {
+    let status = Command::new(formatter)
+        .arg(&file_name)
+        .args(args)
+        .status()
+        .expect("Some error");
+    assert!(status.success());
 }
