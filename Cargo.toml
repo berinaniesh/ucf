@@ -7,3 +7,4 @@ authors = ["Berin Aniesh <berinaniesh@gmail.com>"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+args = "2.2.0"

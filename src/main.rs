@@ -1,4 +1,5 @@
 use std::env;
+use args::{Args, ArgsError};
 
 const PROGRAM_NAME: &'static str = "ucf";
 const PROGRAM_DESC: &'static str = "Universal Code Formatter";
@@ -8,16 +9,24 @@ fn print_help() {
     println!("{}", help_string);
 }
 
-fn parse_config() -> () {
-    
+fn parse(input: &Vec<String>) -> Result<(String), ArgsError> {
+   let mut args = Args::new(PROGRAM_NAME, PROGRAM_DESC);
+   args.flag("h", "help", "Print the usage menu");
+
+   args.parse(input)?;
+
+   let is_help = args.value_of("help")?;
+   if is_help {
+       args.full_usage();
+   }
+
 }
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     dbg!(&args);
-    if args.len() != 2 {
-        panic!("Improper number of arguements given");
-    }
+
+    let (file_name) = parse(&args).unwrap();
 
     let _languages = [
         ("C", ".c", "clang-format"),
