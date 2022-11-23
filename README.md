@@ -54,6 +54,7 @@ I think this approach is more extensible, practical and simple.
 
 ## Planned features
 * Read from stdin and output to stdout (so that this program can be used in IDEs seamlessly). 
+* Additional languages.
 
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 
