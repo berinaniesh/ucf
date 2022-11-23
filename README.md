@@ -29,12 +29,13 @@ ucf --help
 prints help.
 
 ## Why does this program exist?
-
 Basically, I wanted a single program to format any code I throw at it. 
 I did not want to hunt for a formatter for each language I write. 
 I did not want to read the man page for each code formatter I found. 
 But at the end of the day, I went through all the above and wasted so much time. I don't want any others to go through the same process again. 
-So, I decided to write a program that will take care of all those. 
+And each code formatter has its own way of doing things. One will output to stdout and the other will modify in place. Each code formatter needed different arguments to do the same job.
+So, I decided to write a program that will take care of all those shenanigans, remove the burden from users. 
+Here, you call `ucf` and it formats code in place. That's all, super easy, barely an inconvenience. 
 
 ## Why not use a generic code formatter?
 I understand generic code formatters exist (check [this repo](https://github.com/rishirdua/awesome-code-formatters) for a list), but 
