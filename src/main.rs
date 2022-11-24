@@ -8,7 +8,7 @@ fn main() {
     let args: UCF_Args = UCF_Args::parse();
     let file_name: String = args.file_name.clone();
     let file_extension: String = find_extension(&file_name);
-    let formatter: String;
+    let mut formatter: String = String::new();
     let mut formatter_args: Vec<&str> = Vec::new();
     match file_extension.as_str() {
         "c" | "cpp" | "cc" |"cs" | "h" | "hpp" | "java" | "json" | "m" => {
@@ -33,10 +33,25 @@ fn main() {
         "rs" => {
             formatter = String::from("rustfmt");
         }
-        _ => {
-            exit(0);
-        }
+        _ => {}
     }
+    
+    let custom_formatter = args.formatter.clone();
+    match custom_formatter {
+        Some(x) => {formatter = x;
+            formatter_args = Vec::new();
+        }
+        None => {},
+    }    
+   
+    let custom_formatter_args = args.args_formatter.clone();
+    match custom_formatter_args {
+        Some(ref x) => {
+            formatter_args = x.split(" ").collect::<Vec<&str>>();
+        }
+        None => {}
+    }
+
     format_code(&file_name, &formatter, &formatter_args);
 }
 
