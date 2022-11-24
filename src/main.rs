@@ -33,6 +33,9 @@ fn main() {
         "rs" => {
             formatter = String::from("rustfmt");
         }
+        "lua" => {
+            formatter = String::from("stylua");
+        }
         _ => {}
     }
     
@@ -51,8 +54,12 @@ fn main() {
         }
         None => {}
     }
+    
 
-    format_code(&file_name, &formatter, &formatter_args);
+
+    let success: bool = format_code(&file_name, &formatter, &formatter_args);
+    if success {exit(0)}
+    else {exit(1)}
 }
 
 fn find_extension(file_name: &String) -> String {
@@ -61,11 +68,11 @@ fn find_extension(file_name: &String) -> String {
     return String::from(split_vec.pop().unwrap());
 }
 
-fn format_code(file_name: &String, formatter: &String, args: &Vec<&str>) {
+fn format_code(file_name: &String, formatter: &String, args: &Vec<&str>) -> bool {
     let status = Command::new(formatter)
         .arg(&file_name)
         .args(args)
         .status()
         .expect("Some error");
-    assert!(status.success());
+    return status.success();
 }
