@@ -20,10 +20,10 @@ prints help.
 | Formatter called   | File Extension                                                                               |
 |--------------------|-----------------------------------------------------------------------------------------|
 | black              | .py                                                                                  |
-| clang-format       | .c, .cpp, .cc                                                                                  |
+| clang-format       | .c, .cpp, .cc, .cs, .h, .hpp, .java, .json, .m
+| cmake-format       | .cmake |                                                                               |
 | gofmt              | .go                                                                                  |
-| google-java-format | .java                                                                                    |
-| prettier           | .css, .gfm, .html, .js, .json, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
+| prettier           | .css, .gfm, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
 | rustfmt            | .rs
 
 ## Contribute

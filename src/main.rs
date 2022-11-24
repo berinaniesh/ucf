@@ -11,19 +11,19 @@ fn main() {
     let formatter: String;
     let mut formatter_args: Vec<&str> = Vec::new();
     match file_extension.as_str() {
-        "c" | "cpp" | "cc" => {
+        "c" | "cpp" | "cc" |"cs" | "h" | "hpp" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
+            formatter_args.push("-i");
+        }
+        "cmake" => {
+            formatter = String::from("cmake-format");
             formatter_args.push("-i");
         }
         "go" => {
             formatter = String::from("gofmt");
             formatter_args.push("-w");
         }
-        "java" => {
-            formatter = String::from("google-java-format");
-            formatter_args.push("-i");
-        }
-        "css"|"gfm"|"html"|"js"|"json"|"jsx"|"less"|"md"|"mdx"|"sass"|"scss"|"ts"|"vue"|"yaml" => {
+        "css"|"gfm"|"html"|"js"|"jsx"|"less"|"md"|"mdx"|"sass"|"scss"|"ts"|"vue"|"yaml" => {
             formatter = String::from("prettier");
             formatter_args.push("-w");
         }
