@@ -26,8 +26,5 @@ prints help.
 | prettier           | .css, .gfm, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
 | rustfmt            | .rs
 
-## Credits
-The people over at rust-lang discord. 
-
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 
