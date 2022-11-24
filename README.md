@@ -14,7 +14,7 @@ ucf --help
 prints help.
 
 ## Inner working
-`ucf` is a very simple program. It determines the file extension and calls a predetermined code formatter on the file as listed in the table below with necessary arguments to modify the file in place.
+`ucf` is a simple program. It determines the file extension and calls a predetermined code formatter on the file as listed in the table below with necessary arguments to modify the file in place.
 
 ## Currently used formatters
 | Formatter called   | File Extension                                                                               |
