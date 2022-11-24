@@ -11,7 +11,7 @@ fn main() {
     let mut formatter: String = String::new();
     let mut formatter_args: Vec<&str> = Vec::new();
     match file_extension.as_str() {
-        "c" | "cpp" | "cc" |"cs" | "h" | "hpp" | "java" | "json" | "m" => {
+        "c" | "cpp" | "cc" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
             formatter_args.push("-i");
         }
@@ -23,7 +23,8 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push("-w");
         }
-        "css"|"gfm"|"html"|"js"|"jsx"|"less"|"md"|"mdx"|"sass"|"scss"|"ts"|"vue"|"yaml" => {
+        "css" | "gfm" | "html" | "js" | "jsx" | "less" | "md" | "mdx" | "sass" | "scss" | "ts"
+        | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push("-w");
         }
@@ -38,15 +39,16 @@ fn main() {
         }
         _ => {}
     }
-    
+
     let custom_formatter = args.formatter.clone();
     match custom_formatter {
-        Some(x) => {formatter = x;
+        Some(x) => {
+            formatter = x;
             formatter_args = Vec::new();
         }
-        None => {},
-    }    
-   
+        None => {}
+    }
+
     let custom_formatter_args = args.args_formatter.clone();
     match custom_formatter_args {
         Some(ref x) => {
@@ -54,12 +56,13 @@ fn main() {
         }
         None => {}
     }
-    
-
 
     let success: bool = format_code(&file_name, &formatter, &formatter_args);
-    if success {exit(0)}
-    else {exit(1)}
+    if success {
+        exit(0)
+    } else {
+        exit(1)
+    }
 }
 
 fn find_extension(file_name: &String) -> String {
