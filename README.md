@@ -31,15 +31,22 @@ prints help.
 ## Editor Integration
 
 One of the reasons I wrote this wrapper is for simpler editor integrations. 
-For `vim` / `neovim`, after saving the file, run this program on your file as a shell command. 
+
+### vim / neovim
+
+After saving the file, run this program on your file as a shell command. 
 ```
 :!ucf %
 ```
-I bind saving and running code formatter as `<F5>`. In `init.lua`,
+This can be automated in many ways, eg. bind saving and running code formatter as `<F5>`. In `init.lua`,
 ```
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
 saves the file and runs the formatter on the files when pressing `<F5>`. 
+
+### vscode
+
+The [Run on Save extension](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) can help (I guess). 
 
 ## Upcoming feature
 
