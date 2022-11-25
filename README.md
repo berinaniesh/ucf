@@ -33,7 +33,7 @@ prints help.
 ## Currently used formatters
 
 | Formatter called | File Extension                                                                 |
-| ---------------- | ------------------------------------------------------------------------------ | --- |
+| ---------------- | ------------------------------------------------------------------------------ | 
 | black            | .py                                                                            |
 | clang-format     | .c, .cpp, .cc, .cs, .h, .hpp, .java, .json, .m                                 |
 | cmake-format     | .cmake                                                                         |     |
