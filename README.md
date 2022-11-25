@@ -45,23 +45,19 @@ prints help.
 
 ## Editor Integration
 
-One of the reasons I wrote this wrapper is for simpler editor integrations.
-
 ### vim / neovim
 
-After saving the file, run this program on your file as a shell command.
+After saving the file, run this program on the file as a shell command.
 
 ```
 :!ucf %
 ```
 
-This can be automated in many ways, eg. bind saving and running code formatter as `<F5>`. In `init.lua`,
+This can be automated in many ways, eg. To bind `<F5>` to save and format the file, add the following line in `init.lua`,
 
 ```
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
-
-saves the file and runs the formatter on the file when pressing `<F5>`.
 
 ### vscode
 
