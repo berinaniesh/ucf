@@ -35,11 +35,11 @@ For `vim` / `neovim`, after saving the file, run this program on your file as a 
 ```
 :!ucf %
 ```
-I bind saving and running code formatter as "<F5>". In `init.lua`,
+I bind saving and running code formatter as `<F5>`. In `init.lua`,
 ```
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
-saves the file and runs the formatter on the files. 
+saves the file and runs the formatter on the files when pressing `<F5>`. 
 
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 
