@@ -47,7 +47,7 @@ prints help.
 
 ### vim / neovim
 
-After saving the file, run this program on the file as a shell command.
+After saving the file, run `ucf` on the file as a shell command.
 
 ```
 :!ucf %
