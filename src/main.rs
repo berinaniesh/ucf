@@ -28,7 +28,7 @@ fn main() {
             formatter = String::from("prettier");
             formatter_args.push("-w");
         }
-        "py" => {
+        "py" | "ipynb" => {
             formatter = String::from("black");
         }
         "rs" => {
