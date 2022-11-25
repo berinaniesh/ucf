@@ -35,7 +35,7 @@ For `vim` / `neovim`, after saving the file, run this program on your file as a 
 ```
 :!ucf %
 ```
-I bind saving and running code formatter as <F5>. In `init.lua`,
+I bind saving and running code formatter as "<F5>". In `init.lua`,
 ```
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
