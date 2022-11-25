@@ -41,5 +41,9 @@ vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true}
 ```
 saves the file and runs the formatter on the files when pressing `<F5>`. 
 
+## Upcoming feature
+
+A config file for ignoring specific file extensions.
+
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 
