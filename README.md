@@ -6,7 +6,7 @@ A code formatter that formats any code.
 ```
 ucf <file_name>
 ```
-Remember that `ucf` modifies the file in place and there is no option to output to stdout at the moment.
+**Caution:** `ucf` modifies the file in place and there is no option to output to stdout at the moment.
 
 ```
 ucf --help
@@ -25,6 +25,21 @@ prints help.
 | gofmt              | .go                                                                                  |
 | prettier           | .css, .gfm, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
 | rustfmt            | .rs
+| stylua	     | .lua   	|
+| stylish-haskell    | .hs	|
+
+## Editor Integration
+
+One of the reasons I wrote this wrapper is for simpler editor integrations. 
+For `vim` / `neovim`, after saving the file, run this program on your file as a shell command. 
+```
+:!ucf %
+```
+I bind saving and running code formatter as <F5>. In `init.lua`,
+```
+vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
+```
+saves the file and runs the formatter on the files. 
 
 ## Contribute
 All patches are welcome. Fork the repo, make your changes and submit a pull request. 

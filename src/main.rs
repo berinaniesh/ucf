@@ -34,6 +34,10 @@ fn main() {
         "rs" => {
             formatter = String::from("rustfmt");
         }
+        "hs" => {
+            formatter = String::from("stylish-haskell");
+            formatter_args.push("-i");
+        }
         "lua" => {
             formatter = String::from("stylua");
         }
