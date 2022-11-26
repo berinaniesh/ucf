@@ -42,8 +42,10 @@ fn main() {
             formatter = String::from("stylua");
         }
         "xml" => {
-            formatter = String::from("tidy");
-            formatter_args.push("-m");
+            formatter = String::from("xmllint");
+            formatter_args.push("--format");
+            formatter_args.push("--output");
+            formatter_args.push(&file_name.as_str());
         }
         _ => {}
     }
