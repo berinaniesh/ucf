@@ -41,6 +41,10 @@ fn main() {
         "lua" => {
             formatter = String::from("stylua");
         }
+        "xml" => {
+            formatter = String::from("tidy");
+            formatter_args.push("-m");
+        }
         _ => {}
     }
 

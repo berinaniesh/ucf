@@ -42,6 +42,7 @@ prints help.
 | rustfmt          | .rs                                                                            |
 | stylua           | .lua                                                                           |
 | stylish-haskell  | .hs                                                                            |
+| tidy	     | 	    .xml |
 
 ## Editor Integration
 
