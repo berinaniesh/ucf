@@ -23,7 +23,7 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push("-w");
         }
-        "css" | "gfm" | "html" | "js" | "jsx" | "less" | "md" | "mdx" | "sass" | "scss" | "ts"
+        "css" | "gfm" | "js" | "jsx" | "less" | "md" | "mdx" | "sass" | "scss" | "ts"
         | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push("-w");
@@ -41,7 +41,7 @@ fn main() {
         "lua" => {
             formatter = String::from("stylua");
         }
-        "xml" => {
+        "html" | "xml" => {
             formatter = String::from("tidy");
             formatter_args.push("-m");
         }
