@@ -60,10 +60,6 @@ This can be automated in many ways, eg. To bind `<F5>` to save and format the fi
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
 
-### vscode
-
-The [Run on Save extension](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave) can help (I guess).
-
 ## Upcoming feature
 
 A config file for ignoring specific file extensions.
