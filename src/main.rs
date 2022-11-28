@@ -41,6 +41,10 @@ fn main() {
         "lua" => {
             formatter = String::from("stylua");
         }
+        "ocaml" => {
+            formatter = String::from("ocamlformat");
+            formatter_args.push(String::from("-i"));
+        }
         "toml" => {
             formatter = String::from("taplo");
             formatter_args.push(String::from("fmt"));
