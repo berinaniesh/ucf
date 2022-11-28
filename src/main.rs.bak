@@ -9,24 +9,24 @@ fn main() {
     let mut file_name: String = args.file_name.clone();
     let file_extension: String = find_extension(&file_name);
     let mut formatter: String = String::new();
-    let mut formatter_args: Vec<String> = Vec::new();
+    let mut formatter_args: Vec<&str> = Vec::new();
     match file_extension.as_str() {
         "c" | "cpp" | "cc" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
-            formatter_args.push(String::from("-i"));
+            formatter_args.push("-i");
         }
         "cmake" => {
             formatter = String::from("cmake-format");
-            formatter_args.push(String::from("-i"));
+            formatter_args.push("-i");
         }
         "go" => {
             formatter = String::from("gofmt");
-            formatter_args.push(String::from("-w"));
+            formatter_args.push("-w");
         }
         "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
         | "sass" | "scss" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
-            formatter_args.push(String::from("-w"));
+            formatter_args.push("-w");
         }
         "py" | "ipynb" => {
             formatter = String::from("black");
@@ -36,28 +36,36 @@ fn main() {
         }
         "hs" => {
             formatter = String::from("stylish-haskell");
-            formatter_args.push(String::from("-i"));
+            formatter_args.push("-i");
         }
         "lua" => {
             formatter = String::from("stylua");
         }
         "toml" => {
             formatter = String::from("taplo");
-            formatter_args.push(String::from("fmt"));
-            formatter_args.push(file_name.clone());
-            file_name.clear(); // Check condition where custom formatter is given
+            formatter_args.push("fmt");
+            formatter_args.push(&file_name.as_str());
+            file_name.clear();
         }
         "xml" => {
             formatter = String::from("xmllint");
-            formatter_args.push(String::from("--format"));
-            formatter_args.push(String::from("--output"));
-            formatter_args.push(file_name.clone());
+            formatter_args.push("--format");
+            formatter_args.push("--output");
+            formatter_args.push(&file_name.as_str());
         }
         "zig" => {
             formatter = String::from("zig");
-            formatter_args.push(String::from("fmt"));
-            formatter_args.push(file_name.clone());
-            file_name.clear(); // Check condition where custom formatter is given
+            formatter_args.push("fmt");
+            let result = Command::new(&formatter)
+                .arg("fmt")
+                .arg(&file_name)
+                .status()
+                .expect("Something went wrong");
+            if result.success() {
+                exit(0);
+            } else {
+                exit(1);
+            }
         }
         _ => {}
     }
@@ -74,7 +82,7 @@ fn main() {
     let custom_formatter_args = args.args_formatter.clone();
     match custom_formatter_args {
         Some(ref x) => {
-            formatter_args = x.split(" ").map(String::from).collect::<Vec<String>>();
+            formatter_args = x.split(" ").collect::<Vec<&str>>();
         }
         None => {}
     }
@@ -93,13 +101,11 @@ fn find_extension(file_name: &String) -> String {
     return String::from(split_vec.pop().unwrap());
 }
 
-fn format_code(file_name: &String, formatter: &String, args: &Vec<String>) -> bool {
-    let mut command = Command::new(formatter);
-    if file_name.trim().is_empty() {}
-    else {
-        command.arg(&file_name);
-    }
-    command.args(args);
-    let status = command.status().expect("Something went wrong");
+fn format_code(file_name: &String, formatter: &String, args: &Vec<&str>) -> bool {
+    let status = Command::new(formatter)
+        .arg(&file_name)
+        .args(args)
+        .status()
+        .expect("Some error");
     return status.success();
 }
