@@ -23,8 +23,8 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push("-w");
         }
-        "css" | "gfm" | "html" | "js" | "jsx" | "less" | "md" | "mdx" | "sass" | "scss" | "ts"
-        | "vue" | "yaml" => {
+        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
+        | "sass" | "scss" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push("-w");
         }
@@ -41,11 +41,39 @@ fn main() {
         "lua" => {
             formatter = String::from("stylua");
         }
+        "toml" => {
+            formatter = String::from("taplo");
+            formatter_args.push("fmt");
+            let result = Command::new(&formatter)
+                .arg("fmt")
+                .arg(&file_name)
+                .status()
+                .expect("Something went wrong");
+            if result.success() {
+                exit(0);
+            } else {
+                exit(1);
+            }
+        }
         "xml" => {
             formatter = String::from("xmllint");
             formatter_args.push("--format");
             formatter_args.push("--output");
             formatter_args.push(&file_name.as_str());
+        }
+        "zig" => {
+            formatter = String::from("zig");
+            formatter_args.push("fmt");
+            let result = Command::new(&formatter)
+                .arg("fmt")
+                .arg(&file_name)
+                .status()
+                .expect("Something went wrong");
+            if result.success() {
+                exit(0);
+            } else {
+                exit(1);
+            }
         }
         _ => {}
     }
@@ -71,6 +99,7 @@ fn main() {
     if success {
         exit(0)
     } else {
+        println!("Sed");
         exit(1)
     }
 }

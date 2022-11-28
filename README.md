@@ -38,11 +38,13 @@ prints help.
 | clang-format     | .c, .cpp, .cc, .cs, .h, .hpp, .java, .json, .m                                 |
 | cmake-format     | .cmake                                                                         |
 | gofmt            | .go                                                                            |
-| prettier         | .css, .gfm, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
+| prettier         | .css, .gfm, .graphql, .gql, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .ts, .vue, .yaml |
 | rustfmt          | .rs                                                                            |
 | stylua           | .lua                                                                           |
 | stylish-haskell  | .hs                                                                            |
+| taplo		   | .toml	|
 | xmllint	     | 	   .xml |
+| zig fmt 	| .zig	|
 
 ## Editor Integration
 
