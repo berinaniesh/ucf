@@ -24,7 +24,7 @@ fn main() {
             formatter_args.push(String::from("-w"));
         }
         "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
-        | "sass" | "scss" | "ts" | "vue" | "yaml" => {
+        | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push(String::from("-w"));
         }
