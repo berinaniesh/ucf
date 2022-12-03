@@ -63,7 +63,9 @@ fn main() {
             formatter_args.push(file_name.clone());
             file_name.clear(); // Check condition where custom formatter is given
         }
-        _ => {}
+        _ => {
+            exit(0);
+        }
     }
 
     let custom_formatter = args.formatter.clone();
