@@ -23,7 +23,7 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push(String::from("-w"));
         }
-        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
+        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx" | "prettierrc"
         | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push(String::from("-w"));

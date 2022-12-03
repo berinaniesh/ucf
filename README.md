@@ -39,7 +39,7 @@ prints help.
 | cmake-format     | .cmake                                                                         |
 | gofmt            | .go                                                                            |
 | ocamlformat		| .ocaml |
-| prettier         | .css, .gfm, .graphql, .gql, .html, .js, .jsx, .less, .md, .mdx, .sass, .scss, .svelte, .ts, .vue, .yaml |
+| prettier         | .css, .gfm, .graphql, .gql, .html, .js, .jsx, .less, .md, .mdx, .prettierrc, .sass, .scss, .svelte, .ts, .vue, .yaml |
 | rustfmt          | .rs                                                                            |
 | stylua           | .lua                                                                           |
 | stylish-haskell  | .hs                                                                            |
