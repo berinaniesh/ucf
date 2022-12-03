@@ -23,8 +23,8 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push(String::from("-w"));
         }
-        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx" | "prettierrc"
-        | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
+        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
+        | "prettierrc" | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push(String::from("-w"));
         }
@@ -64,7 +64,13 @@ fn main() {
             file_name.clear(); // Check condition where custom formatter is given
         }
         _ => {
-            exit(0);
+            let custom_formatter = args.formatter.clone();
+            match custom_formatter {
+                Some(_x) => {}
+                None => {
+                    exit(0);
+                }
+            }
         }
     }
 
@@ -101,8 +107,8 @@ fn find_extension(file_name: &String) -> String {
 
 fn format_code(file_name: &String, formatter: &String, args: &Vec<String>) -> bool {
     let mut command = Command::new(formatter);
-    if file_name.trim().is_empty() {}
-    else {
+    if file_name.trim().is_empty() {
+    } else {
         command.arg(&file_name);
     }
     command.args(args);
