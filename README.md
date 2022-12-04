@@ -63,10 +63,10 @@ This can be automated in many ways, eg. To bind `<F5>` to save and format the fi
 vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true})
 ```
 
-## Upcoming feature
+## Config file
 
-A config file for ignoring specific file extensions.
+To ignore certain file extensions, add the extensions without the dot in the `ignored_extensions` array in `$XDG_CONFIG_HOME/ucf/config.toml` file. `ucf` formats code overriding the config file if a custom formatter is given. 
 
 ## Contribute
 
-All patches are welcome. Fork the repo, make your changes and submit a pull request.
+All patches are welcome. Fork the repo, make your changes and`` submit a pull request.

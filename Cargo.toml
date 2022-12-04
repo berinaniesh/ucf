@@ -9,3 +9,6 @@ description  = "A universal code formatter"
 
 [dependencies]
 clap = {version = "4.0.26", features = ["derive"]}
+confy = "0.5.1"
+serde = "1.0.148"
+serde_derive = "1.0.148"
