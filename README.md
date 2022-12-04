@@ -9,7 +9,7 @@ A code formatter that formats any code.
 ```
 git clone https://github.com/berinaniesh/ucf.git
 cd ucf
-cargo install --path .
+make install
 ```
 
 ## Usage
