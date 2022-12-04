@@ -8,7 +8,7 @@ pub struct UCF_Args {
     pub file_name: String,
 
     #[arg(short, long)]
-    /// Explicitly specify formatter to be used.
+    /// Explicitly specify formatter to be used. It is recommended to specify formatter args also
     pub formatter: Option<String>,
 
     //  #[arg(short, long)]
