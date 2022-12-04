@@ -2,12 +2,34 @@ mod args;
 
 use args::UCF_Args;
 use clap::Parser;
+use serde_derive::{Deserialize, Serialize};
 use std::process::{exit, Command};
+
+#[derive(Default, Debug, Serialize, Deserialize)]
+struct MyConfig {
+    ignored_extensions: Vec<String>,
+}
 
 fn main() {
     let args: UCF_Args = UCF_Args::parse();
     let mut file_name: String = args.file_name.clone();
+
+    let cfg: MyConfig =
+        confy::load("ucf", "config").expect("Something went wrong parsing the config files");
+
     let file_extension: String = find_extension(&file_name);
+    for i in cfg.ignored_extensions.iter() {
+        if i.eq(&file_extension) {
+            let custom_formatter = args.formatter.clone();
+            match custom_formatter {
+                Some(_x) => {}
+                None => {
+                    println!("File extension present in ignored extension list in the config file. Skipping");
+                    exit(0);
+                }
+            }
+        }
+    }
     let mut formatter: String = String::new();
     let mut formatter_args: Vec<String> = Vec::new();
     match file_extension.as_str() {
