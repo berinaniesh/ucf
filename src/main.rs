@@ -13,6 +13,16 @@ struct MyConfig {
 fn main() {
     let args: UCF_Args = UCF_Args::parse();
     let mut file_name: String = args.file_name.clone();
+    let is_cf: bool; // is_cf = is custom formatter given
+    let cf = args.formatter.clone();
+    match cf {
+        Some(_x) => {
+            is_cf = true;
+        }
+        None => {
+            is_cf = false;
+        }
+    }
 
     let cfg: MyConfig =
         confy::load("ucf", "config").expect("Something went wrong parsing the config files");
@@ -20,13 +30,11 @@ fn main() {
     let file_extension: String = find_extension(&file_name);
     for i in cfg.ignored_extensions.iter() {
         if i.eq(&file_extension) {
-            let custom_formatter = args.formatter.clone();
-            match custom_formatter {
-                Some(_x) => {}
-                None => {
-                    println!("File extension present in ignored extension list in the config file. Skipping");
-                    exit(0);
-                }
+            if is_cf == false {
+                println!(
+                    "File extension present in ignored extension list in the config file. Skipping"
+                );
+                exit(0);
             }
         }
     }
@@ -71,7 +79,9 @@ fn main() {
             formatter = String::from("taplo");
             formatter_args.push(String::from("fmt"));
             formatter_args.push(file_name.clone());
-            file_name.clear(); // Check condition where custom formatter is given
+            if is_cf == false {
+                file_name.clear();
+            }
         }
         "xml" => {
             formatter = String::from("xmllint");
@@ -83,19 +93,16 @@ fn main() {
             formatter = String::from("zig");
             formatter_args.push(String::from("fmt"));
             formatter_args.push(file_name.clone());
-            file_name.clear(); // Check condition where custom formatter is given
+            if is_cf == false {
+                file_name.clear();
+            }
         }
         _ => {
-            let custom_formatter = args.formatter.clone();
-            match custom_formatter {
-                Some(_x) => {}
-                None => {
-                    exit(0);
-                }
+            if is_cf == false {
+                exit(0);
             }
         }
     }
-
     let custom_formatter = args.formatter.clone();
     match custom_formatter {
         Some(x) => {
