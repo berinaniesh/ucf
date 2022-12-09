@@ -41,7 +41,7 @@ fn main() {
     let mut formatter: String = String::new();
     let mut formatter_args: Vec<String> = Vec::new();
     match file_extension.as_str() {
-        "c" | "cpp" | "cc" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
+        "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
             formatter_args.push(String::from("-i"));
         }
@@ -53,7 +53,7 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push(String::from("-w"));
         }
-        "css" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
+        "css" | "cjs" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
         | "prettierrc" | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push(String::from("-w"));
