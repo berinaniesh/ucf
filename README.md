@@ -69,4 +69,4 @@ To ignore certain file extensions, add the extensions without the dot in the `ig
 
 ## Contribute
 
-All patches are welcome. Fork the repo, make your changes and`` submit a pull request.
+All patches are welcome. Fork the repo, make your changes and submit a pull request.
