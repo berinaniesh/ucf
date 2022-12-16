@@ -5,6 +5,7 @@ use clap::Parser;
 use serde_derive::{Deserialize, Serialize};
 use std::process::{exit, Command};
 
+// Struct to load the config file into
 #[derive(Default, Debug, Serialize, Deserialize)]
 struct MyConfig {
     ignored_extensions: Vec<String>,
@@ -23,11 +24,13 @@ fn main() {
             is_cf = false;
         }
     }
-
+    
+    // Load the config file form disk
     let cfg: MyConfig =
         confy::load("ucf", "config").expect("Something went wrong parsing the config files");
 
     let file_extension: String = find_extension(&file_name);
+    // Skip processing of file if the extension is specified in the config file
     for i in cfg.ignored_extensions.iter() {
         if i.eq(&file_extension) {
             if is_cf == false {
@@ -40,6 +43,7 @@ fn main() {
     }
     let mut formatter: String = String::new();
     let mut formatter_args: Vec<String> = Vec::new();
+    // Find what formatter to use and what formatter arguments to supply depending on the extension
     match file_extension.as_str() {
         "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
