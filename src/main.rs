@@ -45,7 +45,7 @@ fn main() {
     let mut formatter_args: Vec<String> = Vec::new();
     // Find what formatter to use and what formatter arguments to supply depending on the extension
     match file_extension.as_str() {
-        "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "java" | "json" | "m" => {
+        "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "hxx" | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
             formatter_args.push(String::from("-i"));
         }
