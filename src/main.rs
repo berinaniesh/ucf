@@ -140,11 +140,11 @@ fn find_extension(file_name: &String) -> String {
 
 fn format_code(file_name: &String, formatter: &String, args: &Vec<String>) -> bool {
     let mut command = Command::new(formatter);
+    command.args(args);
     if file_name.trim().is_empty() {
     } else {
         command.arg(&file_name);
     }
-    command.args(args);
     let status = command.status().expect("Something went wrong");
     return status.success();
 }
