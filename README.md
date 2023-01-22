@@ -7,9 +7,7 @@ A code formatter that formats any code.
 ### With cargo
 
 ```
-git clone https://github.com/berinaniesh/ucf.git
-cd ucf
-make install
+cargo install ucf
 ```
 
 ## Usage
