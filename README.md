@@ -26,7 +26,7 @@ prints help.
 
 ## Inner working
 
-`ucf` is a simple program. It determines the file extension and calls a predetermined code formatter on the file as listed in the table below with necessary arguments to modify the file in place. The formatter called should be present in the system's `PATH`.
+`ucf` is a simple program. It determines the file extension and calls a predetermined code formatter on the file as listed in the table below with necessary arguments to modify the file in place. **The formatter called should be present in the system's `PATH`**.
 
 ## Currently used formatters
 

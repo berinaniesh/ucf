@@ -128,6 +128,13 @@ fn main() {
     if success {
         exit(0)
     } else {
+        println!("Your code was not formatted.");
+        println!("The file extension was {}", file_extension);
+        if formatter == "" {
+            println!("This file extension is not supported. You can raise an issue if you think this file extension should be supported");
+        } else {
+            println!("Make sure `{}` is present in your system's $PATH", formatter);
+        }
         exit(1)
     }
 }
