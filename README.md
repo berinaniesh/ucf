@@ -1,5 +1,7 @@
 # Universal Code Formatter
 
+[![Latest Version](https://img.shields.io/crates/v/ucf?color=g)](https://crates.io/crates.ucf)
+
 A code formatter that formats any code.
 
 ## Install
