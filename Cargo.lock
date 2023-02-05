@@ -332,7 +332,7 @@ dependencies = [
 
 [[package]]
 name = "ucf"
-version = "0.1.2"
+version = "0.1.4"
 dependencies = [
  "clap",
  "confy",

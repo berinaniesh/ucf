@@ -79,6 +79,10 @@ fn main() {
             formatter = String::from("ocamlformat");
             formatter_args.push(String::from("-i"));
         }
+        "sh" | "ebuild" => {
+            formatter = String::from("shfmt");
+            formatter_args.push(String::from("-w"));
+        }
         "toml" => {
             formatter = String::from("taplo");
             formatter_args.push(String::from("fmt"));

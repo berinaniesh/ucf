@@ -35,12 +35,13 @@ prints help.
 | Formatter called | File Extension                                                                 |
 | ---------------- | ------------------------------------------------------------------------------ | 
 | black            | .py                                                                            |
-| clang-format     | .c, .cpp, .cc, .cs, .h, .hpp, .java, .json, .m                                 |
+| clang-format     | .c, .cpp, .cc, .cs, .cxx, .cp, .cs, .h, .hpp, .hxx .java, .json, .m (objective c, not matlab)            |
 | cmake-format     | .cmake                                                                         |
 | gofmt            | .go                                                                            |
 | ocamlformat		| .ocaml |
 | prettier         | .css, .gfm, .graphql, .gql, .html, .js, .jsx, .less, .md, .mdx, .prettierrc, .sass, .scss, .svelte, .ts, .vue, .yaml |
 | rustfmt          | .rs                                                                            |
+| shfmt		   | .sh, .ebuild    |
 | stylua           | .lua                                                                           |
 | stylish-haskell  | .hs                                                                            |
 | taplo		   | .toml	|
@@ -67,10 +68,8 @@ vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true}
 
 To ignore certain file extensions, add the extensions without the dot in the `ignored_extensions` array in `$XDG_CONFIG_HOME/ucf/config.toml` file. `ucf` formats code overriding the config file if a custom formatter is given. 
 
+Read more [here](https://berinaniesh.github.io/projects/ucf)
 
 ## Contribute
 
 All patches are welcome. Fork the repo, make your changes and submit a pull request.
-
-
-Read more [here](https://berinaniesh.github.io/projects/ucf)
