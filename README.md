@@ -37,6 +37,8 @@ prints help.
 
 `ucf` is a simple program. It determines the file extension and calls a predetermined code formatter on the file as listed in the table below with necessary arguments to modify the file in place. **The formatter called should be present in the system's `PATH`**.
 
+One advantage this has is that the config files for the respective programs (rustfmt.toml, .prettierrc etc) are read automatically.
+
 ## Currently used formatters
 
 | Formatter called | File Extension                                                                 |
