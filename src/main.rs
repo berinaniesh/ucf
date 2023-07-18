@@ -132,17 +132,17 @@ fn main() {
 
     let success = format_code(&file_name, &formatter, &formatter_args);
     if success.is_some() {
-    	let res = success.unwrap();
-    	if res {
-    	    println!("Code formatted successfully");
-    	} else {
+        let res = success.unwrap();
+        if res {
+            println!("Code formatted successfully");
+        } else {
             println!("Your code was not formatted.");
             println!("The file extension was {}.", file_extension);
             println!(
                 "{} refused to format the file. Maybe there are errors in the code?",
                 &formatter
             );
-    	}
+        }
     } else {
         println!("Your code was not formatted.");
         println!("The file extension was {}.", file_extension);
