@@ -72,8 +72,12 @@ To ignore certain file extensions, add the extensions without the dot in the `ig
 
 - [ ] Add option to read folders and run formatter on all files
 - [ ] Add option to format `SQL`
-- [ ] Create PKGBUILD and ebuilds
+- [x] Create PKGBUILD
 - [ ] Display proper error messages (bug)
+
+## For packagers
+
+If you would like to package `ucf` for any distro, make sure to add the packages which provide the binaries from the table above as optional dependencies.
 
 ## Contribute
 
