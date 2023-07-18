@@ -68,7 +68,12 @@ vim.keymap.set('n', '<F5>', ':w | :!ucf % <CR><CR>', {noremap=true, silent=true}
 
 To ignore certain file extensions, add the extensions without the dot in the `ignored_extensions` array in `$XDG_CONFIG_HOME/ucf/config.toml` file. `ucf` formats code overriding the config file if a custom formatter is given. 
 
-Read more [here](https://berinaniesh.github.io/projects/ucf)
+## Todo
+
+- [ ] Add option to read folders and run formatter on all files
+- [ ] Add option to format `SQL`
+- [ ] Create PKGBUILD and ebuilds
+- [ ] Display proper error messages (bug)
 
 ## Contribute
 
