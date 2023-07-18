@@ -11,7 +11,7 @@ license=('MIT')
 depends=('gcc-libs')
 makedepends=('cargo')
 optdepends=('python-black: for py and ipynb support'
-            'clang: for C/C++ files support'
+            'clang: for C/C++, java, json support'
             'python-cmakelang: for cmake support'
             'go: for go support'
             'ocaml-ocamlformat: for ocaml support'
