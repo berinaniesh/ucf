@@ -4,6 +4,7 @@ use args::UCF_Args;
 use clap::Parser;
 use serde_derive::{Deserialize, Serialize};
 use std::process::{exit, Command};
+use std::{env, fs};
 
 // Struct to load the config file into
 #[derive(Default, Debug, Serialize, Deserialize)]
@@ -24,7 +25,7 @@ fn main() {
             is_cf = false;
         }
     }
-    
+
     // Load the config file form disk
     let cfg: MyConfig =
         confy::load("ucf", "config").expect("Something went wrong parsing the config files");
@@ -45,7 +46,8 @@ fn main() {
     let mut formatter_args: Vec<String> = Vec::new();
     // Find what formatter to use and what formatter arguments to supply depending on the extension
     match file_extension.as_str() {
-        "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "hxx" | "java" | "json" | "m" => {
+        "c" | "C" | "cpp" | "CPP" | "cc" | "c++" | "cxx" | "cp" | "cs" | "h" | "hpp" | "hxx"
+        | "java" | "json" | "m" => {
             formatter = String::from("clang-format");
             formatter_args.push(String::from("-i"));
         }
@@ -57,8 +59,8 @@ fn main() {
             formatter = String::from("gofmt");
             formatter_args.push(String::from("-w"));
         }
-        "css" | "cjs" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md" | "mdx"
-        | "prettierrc" | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
+        "css" | "cjs" | "gfm" | "graphql" | "gql" | "html" | "js" | "jsx" | "less" | "md"
+        | "mdx" | "prettierrc" | "sass" | "scss" | "svelte" | "ts" | "vue" | "yaml" => {
             formatter = String::from("prettier");
             formatter_args.push(String::from("-w"));
         }
@@ -128,19 +130,39 @@ fn main() {
         None => {}
     }
 
-    let success: bool = format_code(&file_name, &formatter, &formatter_args);
-    if success {
-        exit(0)
+    let success = format_code(&file_name, &formatter, &formatter_args);
+    if success.is_some() {
+    	let res = success.unwrap();
+    	if res {
+    	    println!("Code formatted successfully");
+    	} else {
+            println!("Your code was not formatted.");
+            println!("The file extension was {}.", file_extension);
+            println!(
+                "{} refused to format the file. Maybe there are errors in the code?",
+                &formatter
+            );
+    	}
     } else {
         println!("Your code was not formatted.");
-        println!("The file extension was {}", file_extension);
-        if formatter == "" {
-            println!("This file extension is not supported. You can raise an issue if you think this file extension should be supported");
-        } else {
-            println!("Make sure `{}` is present in your system's $PATH", formatter);
-        }
-        exit(1)
+        println!("The file extension was {}.", file_extension);
+        println!(
+            "Make sure `{}` is present in your system's $PATH",
+            &formatter
+        );
     }
+}
+
+fn is_program_in_path(program: &str) -> bool {
+    if let Ok(path) = env::var("PATH") {
+        for p in path.split(":") {
+            let p_str = format!("{}/{}", p, program);
+            if fs::metadata(p_str).is_ok() {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 fn find_extension(file_name: &String) -> String {
@@ -149,13 +171,16 @@ fn find_extension(file_name: &String) -> String {
     return String::from(split_vec.pop().unwrap());
 }
 
-fn format_code(file_name: &String, formatter: &String, args: &Vec<String>) -> bool {
-    let mut command = Command::new(formatter);
-    command.args(args);
-    if file_name.trim().is_empty() {
-    } else {
-        command.arg(&file_name);
+fn format_code(file_name: &String, formatter: &String, args: &Vec<String>) -> Option<bool> {
+    if is_program_in_path(&formatter) {
+        let mut command = Command::new(formatter);
+        command.args(args);
+        if file_name.trim().is_empty() {
+        } else {
+            command.arg(&file_name);
+        }
+        let status = command.status().expect("Something went wrong");
+        return Some(status.success());
     }
-    let status = command.status().expect("Something went wrong");
-    return status.success();
+    return None;
 }
