@@ -12,6 +12,13 @@ A code formatter that formats any code.
 cargo install ucf
 ```
 
+### Arch linux
+
+`ucf` is available in the aur [here](https://aur.archlinux.org/packages/ucf). With an aur helper like `yay`, it can be installed with
+```
+yay -S ucf
+```
+
 ## Usage
 
 ```
@@ -72,7 +79,6 @@ To ignore certain file extensions, add the extensions without the dot in the `ig
 
 - [ ] Add option to read folders and run formatter on all files
 - [ ] Add option to format `SQL`
-- [x] Create PKGBUILD
 - [ ] Display proper error messages (bug)
 
 ## For packagers
