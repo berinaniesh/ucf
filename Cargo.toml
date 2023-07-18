@@ -5,7 +5,7 @@ edition = "2021"
 authors = ["Berin Aniesh <berinaniesh@gmail.com>"]
 description  = "A universal code formatter"
 license = "MIT"
-repository = "https://github.com/berinaniesh/ucf.git"
+repository = "https://github.com/berinaniesh/ucf"
 keywords = ["formatting"]
 categories = ["development-tools", "command-line-utilities"]
 
