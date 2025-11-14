@@ -113,6 +113,9 @@ impl UCF {
                     file_name.clear();
                 }
             }
+            "tex" => {
+                formatter = String::from("tex-fmt")
+            }
             _ => {
                 if is_cf == false {
                     println!("The extension of {} is not supported by ucf (yet)!", file_extension);
