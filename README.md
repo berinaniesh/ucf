@@ -54,6 +54,7 @@ One advantage this has is that the config files for the respective programs (rus
 | stylua           | .lua                                                                           |
 | stylish-haskell  | .hs                                                                            |
 | taplo		   | .toml	|
+| terraform fmt  | .tf      |
 | xmllint	     | 	   .xml |
 | zig fmt 	| .zig	|
 
