@@ -1,6 +1,6 @@
 [package]
 name = "ucf"
-version = "0.1.6"
+version = "0.1.7"
 edition = "2024"
 authors = ["Berin Aniesh <berinaniesh@gmail.com>"]
 description  = "A universal code formatter"
