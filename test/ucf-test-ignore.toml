@@ -1,0 +1,35 @@
+# UCF Config to Exclude Test Sample Files
+#
+# Copy this file to $XDG_CONFIG_HOME/ucf/config.toml to prevent
+# UCF from formatting the test sample files.
+#
+# WARNING: This will also prevent UCF from formatting ANY files
+# with these extensions in your entire system. Only use this
+# config if you need to preserve the unformatted test samples.
+#
+# To restore normal behavior, remove or rename the config file:
+#   rm ~/.config/ucf/config.toml
+#
+# Extensions listed here match the test/samples/ files
+
+ignored_extensions = [
+    "c",
+    "cmake",
+    "css",
+    "go",
+    "hs",
+    "html",
+    "js",
+    "json",
+    "lua",
+    "py",
+    "rs",
+    "sh",
+    "tex",
+    "tf",
+    "toml",
+    "ts",
+    "xml",
+    "yaml",
+    "zig"
+]

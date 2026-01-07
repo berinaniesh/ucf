@@ -116,6 +116,14 @@ impl UCF {
             "tex" => {
                 formatter = String::from("tex-fmt")
             }
+            "tf" => {
+                formatter = String::from("terraform");
+                formatter_args.push(String::from("fmt"));
+                formatter_args.push(file_name.clone());
+                if is_cf == false {
+                    file_name.clear();
+                }
+            }
             _ => {
                 if is_cf == false {
                     println!("The extension of {} is not supported by ucf (yet)!", file_extension);
